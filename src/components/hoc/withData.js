@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import Spinner from '../spinner';
 import PropTypes from 'prop-types';
 
-export const withData = (View, getData) => {
+export const withData = (View) => {
     return class extends Component {
         state = {
             data: null
