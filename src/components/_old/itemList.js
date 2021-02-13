@@ -1,29 +1,27 @@
 import React from 'react';
 import './itemList.css';
 import {withData} from '../hoc/withData';
-import PropTypes from 'prop-types';
 
-
-
-const ItemList = ({renderItem, onItemSelected, data}) => {
-
+const ItemList = (props) => {
+    console.log(props);
     const renderItems = (arr) => {
         return arr.map((item) => {
             const {id} = item;
 
-            const label = renderItem(item);
+            const label = props.renderItem(item);
 
             return (
                 <li 
                     key={id}
                     className="list-group-item"
-                    onClick={ () => onItemSelected(id)}>
+                    onClick={ () => props.onItemSelected(id)}>
                     {label}
                 </li>
             )
         })
     }
 
+    const {data} = props;
     const items = renderItems(data);
 
     return (
@@ -35,11 +33,3 @@ const ItemList = ({renderItem, onItemSelected, data}) => {
 }
 
 export default withData(ItemList);
-
-ItemList.defaultProps = {
-    onItemSelected: () => {}
-}
-
-ItemList.propTypes = {
-    onItemSelected: PropTypes.func
-}

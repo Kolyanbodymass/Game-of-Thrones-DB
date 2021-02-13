@@ -1,39 +1,25 @@
-import React, {Component} from 'react';
+import React, {useState, useEffect} from 'react';
 import Spinner from '../spinner';
-import PropTypes from 'prop-types';
+
 
 export const withData = (View) => {
-    return class extends Component {
-        state = {
-            data: null
-        }
-    
-        static defaultProps = {
-            onItemSelected: () => {}
-        }
-        
-        static propTypes = {
-            onItemSelected: PropTypes.func
-        }
-    
-        componentDidMount() {
-            const {getData} = this.props;
+    return (props) => {
+
+        let [state, updateState] = useState({});
+
+        useEffect( () => {
+        const {getData} = props;
             getData()
                 .then( (data) => {
-                    this.setState({
-                        data
-                    })
+                    updateState({ data })
                 })
+        }, [] )
+
+        
+        if (!state.data) {
+            return <Spinner/>
         }
 
-        render() {
-            const {data} = this.state;
-
-            if (!data) {
-                return <Spinner/>
-            }
-
-            return <View {...this.props} data={data}/>
-        }
+        return <View {...props} data={state.data}/>
     }
 }

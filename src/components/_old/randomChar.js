@@ -15,6 +15,14 @@ const RandomChar = (props) =>  {
         error: false
     })
 
+    // static defaultProps = {
+    //     interval: 15000
+    // }
+    
+    // static propTypes = {
+    //     interval: PropTypes.number
+    // }
+
     const onCharLoaded = (char) => {
         setState({
             char,
@@ -86,14 +94,4 @@ const View = ({char}) => {
     )
 }
 
-
-
 export default RandomChar;
-
-RandomChar.defaultProps = {
-    interval: 15000
-}
-
-RandomChar.propTypes = {
-    interval: PropTypes.number
-}
