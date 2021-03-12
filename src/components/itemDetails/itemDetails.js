@@ -13,11 +13,11 @@ export const Field = ({field, label}) => {
 
 const ItemDetails = ({itemId, getData, children}) => {
 
-    let [state, setState] = useState({});
+    let [state, setState] = useState([{}]);
 
     useEffect( () => {
         updateItem();
-        return () => {setState({})}
+        return () => {setState([{}])}
     }, [itemId])
 
     const updateItem = () => {
@@ -25,18 +25,23 @@ const ItemDetails = ({itemId, getData, children}) => {
         if (!itemId) {
             return;
         }
-            
+         
         getData(itemId)
             .then((item) => {
-                setState({item})
+                setState([{item}, false])
             })
+        const item = {};
+        setState([{item}, true])
     }
 
-    if (!state.item) {
+    if (!state[0].item) {
         return <span className='select-error'>Please select item in the list</span>
+    } else if (state[1]) {
+        console.log(state[1]);
+        return <Spinner />
     }
    
-    const {name} = state.item;
+    const {name} = state[0].item;
 
     return (
         <div className="char-details rounded">
