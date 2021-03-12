@@ -6,7 +6,6 @@ import ErrorMessage from '../errorMessage';
 import PropTypes from 'prop-types';
 
 const RandomChar = (props) =>  {
-    console.log(props.interval);
     const service = new gotService();
 
     let [state, setState] = useState({

@@ -12,7 +12,6 @@ const ItemList = ({renderItem, onItemSelected, data}) => {
             const {id} = item;
 
             const label = renderItem(item);
-
             return (
                 <li 
                     key={id}
@@ -36,10 +35,10 @@ const ItemList = ({renderItem, onItemSelected, data}) => {
 
 export default withData(ItemList);
 
-ItemList.defaultProps = {
-    onItemSelected: () => {}
-}
+// ItemList.defaultProps = {
+//     onItemSelected: () => {}
+// }
 
-ItemList.propTypes = {
-    onItemSelected: PropTypes.func
-}
+// ItemList.propTypes = {
+//     onItemSelected: PropTypes.func
+// }

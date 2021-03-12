@@ -3,7 +3,7 @@ import './itemList.css';
 import {withData} from '../hoc/withData';
 
 const ItemList = (props) => {
-    console.log(props);
+
     const renderItems = (arr) => {
         return arr.map((item) => {
             const {id} = item;

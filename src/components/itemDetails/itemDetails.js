@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import './itemDetails.css';
-
+import Spinner from '../spinner';
 
 export const Field = ({field, label}) => {
     return (
@@ -17,22 +17,20 @@ const ItemDetails = ({itemId, getData, children}) => {
 
     useEffect( () => {
         updateItem();
-        return () => {
-            updateItem();
-        }
-    }, [])
+        return () => {setState({})}
+    }, [itemId])
 
     const updateItem = () => {
         
         if (!itemId) {
             return;
         }
-
+            
         getData(itemId)
             .then((item) => {
                 setState({item})
             })
-    }   
+    }
 
     if (!state.item) {
         return <span className='select-error'>Please select item in the list</span>
